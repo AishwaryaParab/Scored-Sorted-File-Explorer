@@ -6,7 +6,7 @@ import SortDropdown from "./sort-dropdown";
 interface FileExplorerProps {
   data: FileExplorerItem[];
   onFileSelect: (file: FileItem) => void;
-  selectedFileId: string;
+  selectedFileId: string | null;
 }
 
 const FileExplorer = ({

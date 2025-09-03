@@ -1,4 +1,6 @@
-export const fileExplorerData = [
+import type { FileExplorerItem } from "./types";
+
+export const fileExplorerData: FileExplorerItem[] = [
   {
     id: "1",
     name: "Documents",

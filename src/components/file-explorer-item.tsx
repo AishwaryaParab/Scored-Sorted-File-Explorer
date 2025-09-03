@@ -5,7 +5,7 @@ import type { FileExplorerItem, FileItem, SortOrder } from "../lib/types";
 interface FileExplorerNodeProps {
   item: FileExplorerItem;
   onFileSelect: (file: FileItem) => void;
-  selectedFileId: string;
+  selectedFileId: string | null;
   sortOrder: SortOrder;
 }
 
