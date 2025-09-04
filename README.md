@@ -1,69 +1,80 @@
-# React + TypeScript + Vite
+# 📂 Scored & Sorted File Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **File Explorer system** built with **React + TypeScript**, featuring animated score visualization, sorting options, and a clean UI powered by **TailwindCSS**.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Nested File & Folder Explorer**  
+  Supports expandable/collapsible folders with files inside.
 
-## Expanding the ESLint configuration
+- **Scored Files**  
+  Each file has an associated **score** represented with an animated circular dial.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Sorting Options**  
+  Easily switch between:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  - Ascending order
+  - Descending order
+  - Original order
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Beautiful UI (Figma Spec Matched)**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  - **Google Fonts Integration**: Space Grotesk, Poppins, Inter
+  - Smooth animations with **Framer Motion**
+  - TailwindCSS theme integration
+
+- **Type-Safe Codebase**  
+  Written entirely in **TypeScript** for better reliability and maintainability.
+
+- **Reusable Components**  
+  File nodes, folder nodes, score dial, and sorting dropdowns are modular.
+
+## Data Structures
+
+Currently implemented with a **tree-based structure**:
+
+```ts
+{
+  id: "1",
+  name: "Documents",
+  type: "folder",
+  children: [
+    {
+      id: "2",
+      name: "Contracts",
+      type: "folder",
+      children: [ ... ]
+    }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Future Improvements
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+For scalability (thousands of files/folders), we can switch to a flattened structure with parentId and childrenIds:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+"2": { id: "2", name: "Contracts", type: "folder", parentId: "1", childrenIds: ["3"] }
+```
+
+This improves:
+
+- Lookup performance (O(1) by ID)
+- Easier lazy-loading
+- Efficient rendering of very large trees
+
+## Installation & Setup
+
+```
+# Clone the repo
+git clone https://github.com/AishwaryaParab/Scored-Sorted-File-Explorer.git
+
+# Navigate to project folder
+cd scored-file-explorer
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
 ```
