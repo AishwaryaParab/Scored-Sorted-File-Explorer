@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { FileExplorerItem, FileItem, SortOrder } from "../lib/types";
-import FileExplorerNode from "./file-explorer-item";
+import FileExplorerNode from "./file-explorer-node";
 import SortDropdown from "./sort-dropdown";
 
 interface FileExplorerProps {
@@ -15,15 +15,15 @@ const FileExplorer = ({
   selectedFileId,
 }: FileExplorerProps) => {
   //   const [fileExplorer, setFileExplorer] = useState<FileExplorerItem[]>(data);
-  const [sortOrder, setSortOrder] = useState<SortOrder>("ASC");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("NONE");
 
   const sortedData: FileExplorerItem[] = useMemo(() => {
     if (sortOrder === "NONE") return data;
 
     return [...data].sort((a, b) => {
-      if (a.type !== b.type) {
-        return a.type === "folder" ? -1 : 1;
-      }
+      //   if (a.type !== b.type) {
+      //     return a.type === "folder" ? -1 : 1;
+      //   }
       const comparison = a.name
         .toLowerCase()
         .localeCompare(b.name.toLowerCase());

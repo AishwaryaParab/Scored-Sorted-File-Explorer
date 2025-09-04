@@ -32,9 +32,9 @@ const FileExplorerNode = ({
     if (sortOrder === "NONE") return item.children;
 
     return [...item.children].sort((a, b) => {
-      if (a.type !== b.type) {
-        return a.type === "folder" ? -1 : 1;
-      }
+      // if (a.type !== b.type) {
+      //   return a.type === "folder" ? -1 : 1;
+      // }
       const comparison = a.name
         .toLowerCase()
         .localeCompare(b.name.toLowerCase());
@@ -45,7 +45,10 @@ const FileExplorerNode = ({
   return (
     <div className="pl-4">
       <div
-        className={`flex items-center gap-2 cursor-pointer py-1`}
+        className={`flex items-center gap-2 cursor-pointer py-1 ${
+          item.type === "file" &&
+          "hover:text-gray-500 transition-colors duration-300"
+        }`}
         onClick={() => handleClick(item)}
       >
         {item.type === "folder" && isExpanded && (

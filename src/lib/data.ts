@@ -90,6 +90,20 @@ export const fileExplorerData: FileExplorerItem[] = [
         score: 73,
         extension: "pdf",
       },
+      {
+        id: "14",
+        name: "Formats",
+        type: "folder",
+        children: [
+          {
+            id: "15",
+            name: "FormatType1.docx",
+            type: "file",
+            score: 66,
+            extension: "docx",
+          },
+        ],
+      },
     ],
   },
 ];

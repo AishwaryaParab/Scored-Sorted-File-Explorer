@@ -1,32 +1,23 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const ScoreComponent = ({ score = 80, size = 250 }) => {
-  const [animatedScore, setAnimatedScore] = useState(0);
+interface ScoreDialProps {
+  score: number | undefined;
+  size?: number;
+}
+
+const ScoreDial = ({ score, size = 250 }: ScoreDialProps) => {
+  if (!score) {
+    return (
+      <div className="flex flex-1 items-center justify-center min-h-screen p-8">
+        <p>No score selected</p>
+      </div>
+    );
+  }
 
   const radius = size / 2 - 20;
   const circumference = 2 * Math.PI * radius;
   const scorePercentage = Math.max(0, Math.min(100, score));
   const dashOffset = circumference - (scorePercentage / 100) * circumference;
-
-  useEffect(() => {
-    let startTime: number | null = null;
-    const duration = 2000;
-
-    const animateScore = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const easeOutExpo = 1 - Math.pow(2, -10 * progress);
-
-      setAnimatedScore(Math.floor(scorePercentage * easeOutExpo));
-
-      if (progress < 1) {
-        requestAnimationFrame(animateScore);
-      }
-    };
-
-    requestAnimationFrame(animateScore);
-  }, [scorePercentage]);
 
   return (
     <div className="flex flex-1 flex-col items-center gap-6 justify-center min-h-screen p-8">
@@ -107,7 +98,7 @@ const ScoreComponent = ({ score = 80, size = 250 }) => {
             className="text-center"
           >
             <div className="text-[32px] font-bold font-grotesk text-[#000000CC] mb-2">
-              {animatedScore}
+              {score}
               <span className="text-[#00000033] ml-1">/100</span>
             </div>
           </motion.div>
@@ -117,4 +108,4 @@ const ScoreComponent = ({ score = 80, size = 250 }) => {
   );
 };
 
-export default ScoreComponent;
+export default ScoreDial;
