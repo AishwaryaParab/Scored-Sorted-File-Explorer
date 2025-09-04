@@ -12,7 +12,7 @@ function App() {
 
   const selectedFileId = selectedFile?.id || null;
   return (
-    <div className="flex items-center gap-14 bg-white">
+    <div className="flex flex-col lg:flex-row items-center gap-14 bg-white">
       <ScoreDial score={selectedFile?.score} />
       <FileExplorer
         data={fileExplorerData}

@@ -8,7 +8,7 @@ interface ScoreDialProps {
 const ScoreDial = ({ score, size = 250 }: ScoreDialProps) => {
   if (!score) {
     return (
-      <div className="flex flex-1 items-center justify-center min-h-screen p-8">
+      <div className="flex flex-1 items-center justify-center p-8 lg:min-h-screen">
         <p>No score selected</p>
       </div>
     );
@@ -20,7 +20,7 @@ const ScoreDial = ({ score, size = 250 }: ScoreDialProps) => {
   const dashOffset = circumference - (scorePercentage / 100) * circumference;
 
   return (
-    <div className="flex flex-1 flex-col items-center gap-6 justify-center min-h-screen p-8">
+    <div className="flex flex-1 flex-col items-center gap-6 justify-center p-8 lg:min-h-screen">
       <motion.h1
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
